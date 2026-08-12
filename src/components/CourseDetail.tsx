@@ -14,6 +14,21 @@ import {
   FileText,
 } from 'lucide-react';
 import { ProgressData, Module } from '../types';
+
+const NOTES_KEY = 'cyberforge_notes';
+
+function loadNotes(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem(NOTES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
+
+function saveNote(id: string, note: string) {
+  const notes = loadNotes();
+  notes[id] = note;
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+}
 import { courses } from '../data';
 
 interface CourseDetailProps {
@@ -174,6 +189,8 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
   if (!course) return <div className="p-6 text-base-content">Course not found.</div>;
 
   const isCompleted = progress.completedCourses.includes(course.id);
+  const [note, setNote] = React.useState(() => loadNotes()[course.id] || '');
+  const [note, setNote] = React.useState(() => loadNotes()[course.id] || '');
   const tierColor =
     course.tier === 'beginner'
       ? 'badge-info'
@@ -267,5 +284,20 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
         </div>
       </div>
     </div>
+    {/* Personal Notes */}
+      <div className="card bg-base-200 mb-4">
+        <div className="card-body p-4">
+          <h2 className="font-semibold text-base-content mb-2">📝 My Notes</h2>
+          <textarea
+            className="textarea textarea-bordered w-full h-32 text-sm"
+            placeholder="Write your notes for this course here..."
+            value={note}
+            onChange={e => {
+              setNote(e.target.value);
+              saveNote(course.id, e.target.value);
+            }}
+          />
+        </div>
+      </div>
   );
 };
