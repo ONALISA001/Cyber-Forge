@@ -30,12 +30,33 @@ function loadProgress(): ProgressData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      const parsed = JSON.parse(raw);
-      // Merge with defaults so any missing keys are filled in
-      return { ...DEFAULT_PROGRESS, ...parsed };
+      const parsed = JSON.parse(raw) as ProgressData;
+      const today = new Date().toDateString();
+      const last = parsed.lastActive
+        ? new Date(parsed.lastActive).toDateString()
+        : null;
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+
+      let streak = parsed.streak ?? 0;
+      if (last === today) {
+        // same day — keep streak as is
+      } else if (last === yesterday) {
+        // visited yesterday — increment
+        streak += 1;
+      } else if (last !== today) {
+        // missed a day — reset
+        streak = 1;
+      }
+
+      return {
+        ...DEFAULT_PROGRESS,
+        ...parsed,
+        streak,
+        lastActive: new Date().toISOString(),
+      };
     }
   } catch {}
-  return { ...DEFAULT_PROGRESS };
+  return { ...DEFAULT_PROGRESS, streak: 1, lastActive: new Date().toISOString() };
 }
 
 function saveProgress(p: ProgressData) {
