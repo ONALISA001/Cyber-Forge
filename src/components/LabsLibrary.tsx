@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
 import { Search, FlaskConical, CheckCircle, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Tier, ProgressData, Lab } from '../types';
+
+const NOTES_KEY = 'cyberforge_notes';
+
+function loadNotes(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem(NOTES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch { return {}; }
+}
+
+function saveNote(id: string, note: string) {
+  const notes = loadNotes();
+  notes[id] = note;
+  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+}
 import { labs } from '../data';
 import { TerminalEmulator } from './Terminal';
 
@@ -33,6 +48,7 @@ export const LabsLibrary: React.FC<LabsLibraryProps> = ({ progress, onCompleteLa
 
   if (selectedLab) {
     const isCompleted = progress.completedLabs.includes(selectedLab.id);
+    const [note, setNote] = React.useState(() => loadNotes()[selectedLab.id] || '');
     return (
       <div className="fade-in p-6 overflow-y-auto h-full scrollbar-thin">
         <button className="btn btn-ghost btn-sm gap-1 mb-4" onClick={() => setSelectedLab(null)}>
@@ -114,7 +130,24 @@ export const LabsLibrary: React.FC<LabsLibraryProps> = ({ progress, onCompleteLa
               </div>
             </div>
           </div>
-        )}
+        
+      )}
+
+        {/* Personal Notes */}
+        <div className="card bg-base-200 mb-4">
+          <div className="card-body p-4">
+            <h2 className="font-semibold text-base-content mb-2">📝 My Notes</h2>
+            <textarea
+              className="textarea textarea-bordered w-full h-32 text-sm"
+              placeholder="Write your notes for this lab here..."
+              value={note}
+              onChange={e => {
+                setNote(e.target.value);
+                saveNote(selectedLab.id, e.target.value);
+              }}
+            />
+          </div>
+        </div>
       </div>
     );
   }
