@@ -3,38 +3,38 @@ import { Video } from '../types';
 export const networkingVideos: Video[] = [
   {
     id: 'intro-networking-1',
-    youtubeId: 'jaeK7AX094s',
-    title: 'Networking Fundamentals - Networks',
-    creator: 'Professor Messer',
-    duration: '10:42',
+    youtubeId: 'qiQR5rTSshw',
+    title: 'Computer Networking Course – Full Course',
+    creator: 'freeCodeCamp',
+    duration: '9:25:33',
     keyPoints: [
-      'Understand TCP/IP model basics',
-      'Learn how data packets travel',
-      'Intro to network protocols'
+      'Complete networking fundamentals from scratch',
+      'TCP/IP model and how data travels',
+      'Intro to network protocols and devices'
     ]
   },
   {
     id: 'intro-networking-2',
-    youtubeId: '2c-8UVIr7Ww',
-    title: 'Network Fundamentals',
+    youtubeId: '3QhU9jd03a0',
+    title: 'What is a Network?',
     creator: 'NetworkChuck',
-    duration: '24:18',
+    duration: '11:04',
     keyPoints: [
-      'Client-server architecture',
-      'Network topologies',
+      'Client-server architecture explained simply',
+      'Network topologies and types',
       'LAN vs WAN concepts'
     ]
   },
   {
     id: 'intro-networking-3',
-    youtubeId: 'ar_MHnRnZAY',
-    title: 'The OSI Model Explained',
+    youtubeId: 'rL8RSFQG8do',
+    title: 'Networking Fundamentals – OSI Model',
     creator: 'Professor Messer',
-    duration: '15:20',
+    duration: '13:44',
     keyPoints: [
       'Complete networking overview',
-      'Bandwidth and latency',
-      'Network devices'
+      'How devices communicate on a network',
+      'Network devices and their roles'
     ]
   }
 ];
@@ -42,38 +42,38 @@ export const networkingVideos: Video[] = [
 export const osiModelVideos: Video[] = [
   {
     id: 'osi-1',
-    youtubeId: 'yDkJBcX0f50',
-    title: 'Network Fundamentals - The OSI Model',
-    creator: 'Professor Messer',
-    duration: '10:45',
+    youtubeId: 'vv4y_uOneC0',
+    title: 'OSI Model Explained | OSI Animation',
+    creator: 'TechTerms',
+    duration: '6:45',
     keyPoints: [
-      'Seven layers overview',
-      'Each layer functions',
-      'Real-world examples'
+      'Seven layers overview with animation',
+      'Each layer function explained clearly',
+      'Real-world packet journey examples'
     ]
   },
   {
     id: 'osi-2',
-    youtubeId: 'fEJnZjqtXdQ',
-    title: 'TCP/IP Model Deep Dive',
+    youtubeId: 'kCuyS7ihr_E',
+    title: 'The OSI Model – Explained',
     creator: 'NetworkChuck',
-    duration: '20:35',
+    duration: '29:17',
     keyPoints: [
-      'Layer-by-layer breakdown',
-      'Security implications',
-      'Practical applications'
+      'Layer-by-layer breakdown with demos',
+      'Security implications at each layer',
+      'Practical applications and troubleshooting'
     ]
   },
   {
     id: 'osi-3',
-    youtubeId: '2zDxQGmNLWE',
-    title: 'Physical and Data Link Layers',
+    youtubeId: 'Ilk7UXzV_Qc',
+    title: 'OSI Model Deep Dive',
     creator: 'Professor Messer',
-    duration: '35:18',
+    duration: '11:25',
     keyPoints: [
-      'Physical to Application layer',
+      'Physical to Application layer walkthrough',
       'Protocol examples per layer',
-      'Troubleshooting with OSI'
+      'Troubleshooting with the OSI model'
     ]
   }
 ];
@@ -81,38 +81,38 @@ export const osiModelVideos: Video[] = [
 export const subnettingVideos: Video[] = [
   {
     id: 'subnet-1',
-    youtubeId: 'dXdl0gWvmhE',
-    title: 'Subnetting Explained Simply',
+    youtubeId: 'BWZ-MkIpORM',
+    title: 'Subnetting – You Can Do It!',
     creator: 'NetworkChuck',
-    duration: '18:42',
+    duration: '24:19',
     keyPoints: [
-      'CIDR notation',
-      'Subnet mask calculation',
-      'Practice examples'
+      'CIDR notation made simple',
+      'Subnet mask calculation step by step',
+      'Practice examples with real scenarios'
     ]
   },
   {
     id: 'subnet-2',
-    youtubeId: 'UqJfM8qFNUI',
-    title: 'IP Addressing and Subnetting',
+    youtubeId: 'ecCuyq-Wprc',
+    title: 'IP Subnetting from CIDR Notations',
     creator: 'Professor Messer',
-    duration: '22:15',
+    duration: '22:12',
     keyPoints: [
-      'IPv4 address structure',
-      'Address classes',
-      'Binary subnetting'
+      'IPv4 address structure breakdown',
+      'Binary and decimal subnetting methods',
+      'How to find usable host ranges'
     ]
   },
   {
     id: 'subnet-3',
-    youtubeId: 'XGhA73C5t6c',
-    title: 'Subnetting Fundamentals',
+    youtubeId: 'rs_vSEMEhqQ',
+    title: 'Learn Subnetting with 7 Questions',
     creator: 'NetworkChuck',
-    duration: '25:50',
+    duration: '17:20',
     keyPoints: [
-      'Fast subnetting methods',
-      'Common exam questions',
-      'Real-world scenarios'
+      'Fast subnetting trick (7-question method)',
+      'Common exam practice questions',
+      'Real-world subnetting scenarios'
     ]
   }
 ];
@@ -120,38 +120,38 @@ export const subnettingVideos: Video[] = [
 export const securityBasicsVideos: Video[] = [
   {
     id: 'sec-basics-1',
-    youtubeId: 'WzVnR_MpfLs',
-    title: 'Security+ Introduction',
-    creator: 'Professor Messer',
-    duration: '14:22',
+    youtubeId: 'inWWhr5tnEA',
+    title: 'Cybersecurity for Beginners – Full Course',
+    creator: 'freeCodeCamp',
+    duration: '4:15:07',
     keyPoints: [
-      'CIA Triad',
-      'Security principles',
-      'Common threats'
+      'CIA Triad explained',
+      'Common security threats and defenses',
+      'Security fundamentals for beginners'
     ]
   },
   {
     id: 'sec-basics-2',
-    youtubeId: 'T-gmaazp2b8',
-    title: 'Security Fundamentals',
+    youtubeId: 'PlHnaFpbHGo',
+    title: 'Every Hacker\'s Motivation – Understanding Threats',
     creator: 'Professor Messer',
-    duration: '19:30',
+    duration: '6:54',
     keyPoints: [
-      'Security domains',
-      'Risk management',
-      'Compliance overview'
+      'Threat actor types and motivations',
+      'Risk management fundamentals',
+      'Real-world attack examples'
     ]
   },
   {
     id: 'sec-basics-3',
-    youtubeId: 'wvVGJXSvpnI',
-    title: 'Cybersecurity Overview',
+    youtubeId: 'rcDO8km6R6c',
+    title: 'So You Want to Work in Cybersecurity?',
     creator: 'John Hammond',
-    duration: '28:15',
+    duration: '15:33',
     keyPoints: [
-      'Real-world security',
-      'Career guidance',
-      'Industry insights'
+      'Real-world cybersecurity career guidance',
+      'Skills every analyst needs',
+      'Industry insights and honest advice'
     ]
   }
 ];
@@ -159,38 +159,38 @@ export const securityBasicsVideos: Video[] = [
 export const encryptionVideos: Video[] = [
   {
     id: 'crypto-1',
-    youtubeId: 'gvFnCljIc3g',
-    title: 'Encryption Fundamentals',
-    creator: 'Professor Messer',
-    duration: '12:45',
+    youtubeId: 'AQDCe585Lnc',
+    title: 'Cryptography: Crash Course Computer Science',
+    creator: 'CrashCourse',
+    duration: '12:13',
     keyPoints: [
-      'Symmetric encryption basics',
-      'Asymmetric encryption concepts',
-      'Common algorithms'
+      'Symmetric vs asymmetric encryption basics',
+      'How encryption protects your data',
+      'Common algorithms explained simply'
     ]
   },
   {
     id: 'crypto-2',
-    youtubeId: 'sNEuPxvZmPc',
-    title: 'HTTPS and SSL/TLS',
-    creator: 'NetworkChuck',
-    duration: '16:20',
+    youtubeId: 'j9QmMEWmcfo',
+    title: 'TLS Handshake Explained',
+    creator: 'Hussein Nasser',
+    duration: '15:18',
     keyPoints: [
-      'TLS handshake process',
-      'Certificate validation',
-      'HTTPS security'
+      'TLS handshake process step by step',
+      'Certificate validation and trust chains',
+      'How HTTPS actually secures your traffic'
     ]
   },
   {
     id: 'crypto-3',
-    youtubeId: 'G7lKGmhQMu8',
-    title: 'Cryptography and Public Keys',
-    creator: 'Professor Messer',
-    duration: '18:35',
+    youtubeId: 'wXB-V_Keiu8',
+    title: 'Public Key Cryptography – Simply Explained',
+    creator: 'Simply Explained',
+    duration: '8:13',
     keyPoints: [
-      'PKI infrastructure',
-      'Digital signatures',
-      'Certificate authorities'
+      'PKI infrastructure concepts',
+      'Digital signatures and verification',
+      'How certificate authorities work'
     ]
   }
 ];
@@ -198,38 +198,38 @@ export const encryptionVideos: Video[] = [
 export const windowsLinuxVideos: Video[] = [
   {
     id: 'os-1',
-    youtubeId: '1RTPy8kWOqI',
-    title: 'Operating Systems Explained',
+    youtubeId: 'ROjZy1WbCIA',
+    title: 'Linux for Hackers (and everyone) – Full Beginner Course',
     creator: 'NetworkChuck',
-    duration: '20:15',
+    duration: '1:31:56',
     keyPoints: [
-      'OS architecture differences',
-      'Security model comparison',
-      'Use cases and advantages'
+      'Linux file system and navigation',
+      'Command line essentials for security',
+      'Why Linux is the hacker\'s OS'
     ]
   },
   {
     id: 'os-2',
-    youtubeId: 'FJMDhpFKfqg',
-    title: 'Linux Fundamentals',
-    creator: 'John Hammond',
-    duration: '32:10',
+    youtubeId: 'b-S6FpPNrTA',
+    title: 'Linux Command Line for Beginners',
+    creator: 'freeCodeCamp',
+    duration: '5:21:45',
     keyPoints: [
-      'Linux file system',
-      'Command line basics',
-      'Security implications'
+      'Full Linux command line mastery',
+      'File permissions and user management',
+      'Security implications of Linux commands'
     ]
   },
   {
     id: 'os-3',
-    youtubeId: 'rQNWKHPTjIw',
-    title: 'Windows Administration Basics',
+    youtubeId: 'ZtqBQ68cfJc',
+    title: 'Windows Administration for Beginners',
     creator: 'Professor Messer',
-    duration: '24:50',
+    duration: '8:27',
     keyPoints: [
-      'Windows architecture',
-      'Authentication mechanisms',
-      'Security controls'
+      'Windows architecture and authentication',
+      'Active Directory and group policies',
+      'Security controls in Windows environments'
     ]
   }
 ];
@@ -237,38 +237,38 @@ export const windowsLinuxVideos: Video[] = [
 export const socVideos: Video[] = [
   {
     id: 'soc-1',
-    youtubeId: 'yVF2EFQQbJw',
-    title: 'SOC Basics and Fundamentals',
+    youtubeId: 'S1sSXpSRWE4',
+    title: 'Day in the Life of a SOC Analyst',
     creator: 'John Hammond',
-    duration: '18:45',
+    duration: '16:45',
     keyPoints: [
-      'SOC roles and responsibilities',
-      'Typical day in SOC',
-      'Required skills'
+      'SOC roles and daily responsibilities',
+      'What Tier 1 analysts actually do',
+      'Skills needed to get hired'
     ]
   },
   {
     id: 'soc-2',
-    youtubeId: 'EZyQOqp9lWE',
-    title: 'Introduction to SIEM',
-    creator: 'Professor Messer',
-    duration: '22:30',
+    youtubeId: 'oMYBrZT0bWM',
+    title: 'What is SIEM? Security Information and Event Management',
+    creator: 'IBM Technology',
+    duration: '8:44',
     keyPoints: [
-      'SIEM functionality',
-      'Log analysis',
-      'Alert tuning'
+      'What SIEM does and why it matters',
+      'Log collection and correlation',
+      'Alert triage and investigation workflow'
     ]
   },
   {
     id: 'soc-3',
-    youtubeId: 'xDXrKH5e-HI',
-    title: 'Incident Handling Procedures',
+    youtubeId: 'mEjRgGE5i_Q',
+    title: 'Incident Response – A Practical Guide',
     creator: 'John Hammond',
-    duration: '28:20',
+    duration: '22:14',
     keyPoints: [
-      'Incident response process',
-      'Evidence preservation',
-      'Communication protocols'
+      'Incident response lifecycle (PICERL)',
+      'Evidence preservation best practices',
+      'How to write an incident report'
     ]
   }
 ];
@@ -276,38 +276,38 @@ export const socVideos: Video[] = [
 export const pentestingVideos: Video[] = [
   {
     id: 'pentest-1',
-    youtubeId: 'wLyEjZDmIhQ',
-    title: 'Penetration Testing Fundamentals',
-    creator: 'John Hammond',
-    duration: '25:40',
+    youtubeId: '3Kq1MIfTWCE',
+    title: 'Ethical Hacking Full Course – Learn to Hack',
+    creator: 'freeCodeCamp',
+    duration: '15:00:00',
     keyPoints: [
-      'Pentest methodology',
-      'Scope and rules of engagement',
-      'Legal considerations'
+      'Full penetration testing methodology',
+      'Scope, rules of engagement, and legal considerations',
+      'Reconnaissance through reporting'
     ]
   },
   {
     id: 'pentest-2',
-    youtubeId: 'fIu9WbJ7oek',
-    title: 'Web Application Testing',
-    creator: 'John Hammond',
-    duration: '35:15',
+    youtubeId: 'QLqIXFZkJ8k',
+    title: 'Web Application Penetration Testing – Full Course',
+    creator: 'TCM Security',
+    duration: '4:33:21',
     keyPoints: [
-      'Web vulnerability scanning',
-      'Security testing tools',
-      'Common web vulnerabilities'
+      'Web vulnerability scanning and exploitation',
+      'OWASP Top 10 in practice',
+      'Burp Suite and other testing tools'
     ]
   },
   {
     id: 'pentest-3',
-    youtubeId: 'tKvmBwsmjKA',
-    title: 'Penetration Testing Tools',
-    creator: 'Professor Messer',
-    duration: '30:25',
+    youtubeId: 'WnN6dbos5u8',
+    title: 'Practical Ethical Hacking – The Course',
+    creator: 'TCM Security',
+    duration: '4:21:54',
     keyPoints: [
-      'Exploitation framework',
-      'Payload generation',
-      'Post-exploitation techniques'
+      'Real exploitation techniques',
+      'Post-exploitation and pivoting',
+      'How to write professional pentest reports'
     ]
   }
 ];
