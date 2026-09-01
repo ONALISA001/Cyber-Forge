@@ -9,6 +9,7 @@ import {
   User,
   Users,
   Map,
+  ShieldAlert,
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -27,14 +28,16 @@ const navItems: {
   icon: React.ReactNode;
   requiresAuth: boolean;
 }[] = [
-  { page: 'landing',        label: 'Home',           icon: <Shield size={18} />,        requiresAuth: false },
-  { page: 'dashboard',      label: 'Dashboard',      icon: <LayoutDashboard size={18} />, requiresAuth: true },
-  { page: 'learning-paths', label: 'Learning Paths', icon: <Map size={18} />,           requiresAuth: true },
-  { page: 'labs',           label: 'Labs Library',   icon: <FlaskConical size={18} />,  requiresAuth: true },
-  { page: 'certifications', label: 'Certifications', icon: <Award size={18} />,         requiresAuth: true },
-  { page: 'career-toolkit', label: 'Career Toolkit', icon: <Briefcase size={18} />,    requiresAuth: true },
-  { page: 'profile',        label: 'Profile',        icon: <User size={18} />,          requiresAuth: true },
-  { page: 'community',      label: 'Community',      icon: <Users size={18} />,         requiresAuth: true },
+  { page: 'landing',         label: 'Home',           icon: <Shield size={18} />,         requiresAuth: false },
+  { page: 'dashboard',       label: 'Dashboard',      icon: <LayoutDashboard size={18} />, requiresAuth: true },
+  { page: 'learning-paths',  label: 'Learning Paths', icon: <Map size={18} />,            requiresAuth: true },
+  { page: 'labs',            label: 'Labs Library',   icon: <FlaskConical size={18} />,   requiresAuth: true },
+  { page: 'certifications',  label: 'Certifications', icon: <Award size={18} />,          requiresAuth: true },
+  { page: 'career-toolkit',  label: 'Career Toolkit', icon: <Briefcase size={18} />,      requiresAuth: true },
+  { page: 'profile',         label: 'Profile',        icon: <User size={18} />,           requiresAuth: true },
+  { page: 'community',       label: 'Community',      icon: <Users size={18} />,          requiresAuth: true },
+  { page: 'cyber-awareness', label: 'Stay Safe',      icon: <ShieldAlert size={18} />,    requiresAuth: false },
+  { page: 'my-story',        label: 'My Story',       icon: <BookOpen size={18} />,       requiresAuth: false },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -83,7 +86,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         ))}
       </ul>
 
-      {/* User Info */}
+      {/* User Info + Logout */}
       {isLoggedIn && userName && (
         <div className="p-3 border-t border-base-300">
           <p className="text-xs text-base-content/50 text-center mb-1">Logged in as:</p>

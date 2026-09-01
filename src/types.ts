@@ -68,7 +68,9 @@ export type Page =
   | 'certifications'
   | 'career-toolkit'
   | 'profile'
-  | 'community';
+  | 'community'
+  | 'my-story'
+  | 'cyber-awareness';
 
 export interface AppState {
   currentPage: Page;
@@ -78,7 +80,6 @@ export interface AppState {
   userName: string;
 }
 
-// Single canonical ProgressData — used everywhere
 export interface ProgressData {
   completedCourses: string[];
   completedLabs: string[];

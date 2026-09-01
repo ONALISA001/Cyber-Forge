@@ -12,6 +12,8 @@ import { CertRoadmap } from './components/CertRoadmap';
 import { CareerToolkit } from './components/CareerToolkit';
 import { ProfilePage } from './components/ProfilePage';
 import { CommunityResources } from './components/CommunityResources';
+import { MyStory } from './components/MyStory';
+import { CyberAwareness } from './components/CyberAwareness';
 import './styles.css';
 
 const STORAGE_KEY = 'cyberforge_progress';
@@ -92,9 +94,7 @@ function App() {
 
   const handleGetStarted = useCallback((name: string) => {
     const finalName = name.trim() || 'Learner';
-    // Save to localStorage IMMEDIATELY (don't wait for state update)
     localStorage.setItem(USER_KEY, finalName);
-    // Update state
     setUserName(finalName);
     setIsLoggedIn(true);
     setPage('dashboard');
@@ -220,6 +220,8 @@ function App() {
           />
         )}
         {page === 'community' && <CommunityResources />}
+        {page === 'my-story' && <MyStory />}
+        {page === 'cyber-awareness' && <CyberAwareness />}
       </main>
     </div>
   );
