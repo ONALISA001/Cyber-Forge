@@ -64,11 +64,23 @@ function saveProgress(p: ProgressData) {
 }
 
 function App() {
-  const [page, setPage] = useState<Page>('landing');
+  const [userName, setUserName] = useState<string>(() => {
+    const stored = localStorage.getItem(USER_KEY);
+    return stored && stored.trim().length > 0 ? stored.trim() : '';
+  });
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
+    const stored = localStorage.getItem(USER_KEY);
+    return !!stored && stored.trim().length > 0;
+  });
+
+  const [page, setPage] = useState<Page>(() => {
+    const stored = localStorage.getItem(USER_KEY);
+    return stored && stored.trim().length > 0 ? 'dashboard' : 'landing';
+  });
+
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [progress, setProgress] = useState<ProgressData>(loadProgress);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState(() => localStorage.getItem(USER_KEY) || 'Learner');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => { saveProgress(progress); }, [progress]);
@@ -78,10 +90,22 @@ function App() {
     setSidebarOpen(false);
   }, []);
 
-  const handleGetStarted = useCallback(() => {
+  const handleGetStarted = useCallback((name: string) => {
+    const finalName = name.trim() || 'Learner';
+    // Save to localStorage IMMEDIATELY (don't wait for state update)
+    localStorage.setItem(USER_KEY, finalName);
+    // Update state
+    setUserName(finalName);
     setIsLoggedIn(true);
-    navigate('dashboard');
-  }, [navigate]);
+    setPage('dashboard');
+  }, []);
+
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem(USER_KEY);
+    setUserName('');
+    setIsLoggedIn(false);
+    setPage('landing');
+  }, []);
 
   const completeCourse = useCallback((courseId: string) => {
     setProgress(prev => {
@@ -148,8 +172,10 @@ function App() {
       <Sidebar
         currentPage={page}
         isLoggedIn={isLoggedIn}
+        userName={userName}
         isOpen={sidebarOpen}
         onNavigate={navigate}
+        onLogout={handleLogout}
       />
 
       <main className="flex-1 overflow-y-auto md:ml-0">

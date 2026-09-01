@@ -1,4 +1,5 @@
 import { Course } from '../types';
+import { networkingVideos, osiModelVideos, subnettingVideos } from './videos';
 
 export const beginnerCourses: Course[] = [
   {
@@ -62,7 +63,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Computer Networking: A Top-Down Approach by Kurose & Ross' },
           { name: 'Wireshark Official Documentation', url: 'https://www.wireshark.org/docs/' },
           { name: 'Cisco Networking Basics Course (NetAcad)', url: 'https://www.netacad.com/' }
-        ]
+        ],
+        videos: networkingVideos
       },
       {
         title: 'OSI Model Deep Dive',
@@ -118,7 +120,8 @@ export const beginnerCourses: Course[] = [
           { name: 'CompTIA Network+ Study Guide by Todd Lammle' },
           { name: 'Practical Packet Analysis by Chris Sanders (No Starch Press)' },
           { name: 'OSI Model Explained - Cisco Learning Network', url: 'https://learningnetwork.cisco.com/' }
-        ]
+        ],
+        videos: osiModelVideos
       },
       {
         title: 'TCP/IP Protocol Suite',
@@ -214,7 +217,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Subnetting Practice — Subnetting.org', url: 'https://subnetting.org/' },
           { name: 'CompTIA Network+ Certification All-in-One Exam Guide by Mike Meyers' },
           { name: 'ipcalc — IP Subnet Calculator', url: 'https://jodies.de/ipcalc' }
-        ]
+        ],
+        videos: subnettingVideos
       },
       {
         title: 'DNS, DHCP & HTTP',

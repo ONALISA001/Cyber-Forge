@@ -1,5 +1,14 @@
 export type Tier = 'beginner' | 'intermediate' | 'advanced';
 
+export interface Video {
+  id: string;
+  youtubeId: string;
+  title: string;
+  creator: string;
+  duration: string;
+  keyPoints?: string[];
+}
+
 export interface Module {
   title: string;
   duration: string;
@@ -8,6 +17,7 @@ export interface Module {
   keyTakeaways: string[];
   practiceExercises?: string[];
   resources?: { name: string; url?: string }[];
+  videos?: Video[];
 }
 
 export interface Course {

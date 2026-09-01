@@ -16,7 +16,9 @@ interface SidebarProps {
   currentPage: Page;
   isLoggedIn: boolean;
   isOpen: boolean;
+  userName: string;
   onNavigate: (page: Page) => void;
+  onLogout?: () => void;
 }
 
 const navItems: {
@@ -39,7 +41,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
   currentPage,
   isLoggedIn,
   isOpen,
+  userName,
   onNavigate,
+  onLogout,
 }) => {
   const visibleItems = navItems.filter(
     item => !item.requiresAuth || isLoggedIn
@@ -78,6 +82,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </li>
         ))}
       </ul>
+
+      {/* User Info */}
+      {isLoggedIn && userName && (
+        <div className="p-3 border-t border-base-300">
+          <p className="text-xs text-base-content/50 text-center mb-1">Logged in as:</p>
+          <p className="text-sm font-semibold text-base-content text-center truncate mb-2">
+            {userName}
+          </p>
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              className="btn btn-ghost btn-xs w-full text-xs"
+            >
+              Logout
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Footer */}
       <div className="p-3 border-t border-base-300">

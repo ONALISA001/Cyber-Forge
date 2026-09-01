@@ -12,8 +12,10 @@ import {
   Dumbbell,
   ExternalLink,
   FileText,
+  Film,
 } from 'lucide-react';
 import { ProgressData, Module } from '../types';
+import { VideoPlayer } from './VideoPlayer';
 
 const NOTES_KEY = 'cyberforge_notes';
 
@@ -173,6 +175,16 @@ const ModuleCard: React.FC<{ mod: Module; index: number }> = ({ mod, index }) =>
               </div>
             </div>
           )}
+
+          {/* Video Resources */}
+          {mod.videos && mod.videos.length > 0 && (
+            <div className="border-t border-base-100/20 pt-4">
+              <h4 className="flex items-center gap-2 text-sm font-semibold text-base-content mb-3">
+                <Film size={14} className="text-primary" /> Video Tutorials
+              </h4>
+              <VideoPlayer videos={mod.videos} />
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -189,7 +201,6 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
   if (!course) return <div className="p-6 text-base-content">Course not found.</div>;
 
   const isCompleted = progress.completedCourses.includes(course.id);
-  const [note, setNote] = React.useState(() => loadNotes()[course.id] || '');
   const [note, setNote] = React.useState(() => loadNotes()[course.id] || '');
   const tierColor =
     course.tier === 'beginner'
@@ -283,8 +294,8 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
           ))}
         </div>
       </div>
-    </div>
-    {/* Personal Notes */}
+
+      {/* Personal Notes */}
       <div className="card bg-base-200 mb-4">
         <div className="card-body p-4">
           <h2 className="font-semibold text-base-content mb-2">📝 My Notes</h2>
@@ -299,5 +310,6 @@ export const CourseDetail: React.FC<CourseDetailProps> = ({
           />
         </div>
       </div>
+    </div>
   );
 };
