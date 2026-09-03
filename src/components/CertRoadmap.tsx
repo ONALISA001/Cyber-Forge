@@ -77,7 +77,7 @@ export const CertRoadmap: React.FC<CertRoadmapProps> = ({ progress, onUpdateCert
                         <div className="mt-3 pt-3 border-t border-base-300">
                           <p className="text-xs font-semibold text-base-content/60 mb-1">Study Resources</p>
                           <div className="flex flex-wrap gap-2">
-                            {cert.studyResources.map((r, i) => (
+                            {(cert.studyResources ?? []).map((r, i) => (
                               <span key={i} className="badge badge-ghost badge-xs">{r}</span>
                             ))}
                           </div>

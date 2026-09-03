@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 import { Search, FlaskConical, CheckCircle, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Tier, ProgressData, Lab } from '../types';
-
-const NOTES_KEY = 'cyberforge_notes';
-
-function loadNotes(): Record<string, string> {
-  try {
-    const raw = localStorage.getItem(NOTES_KEY);
-    return raw ? JSON.parse(raw) : {};
-  } catch { return {}; }
-}
-
-function saveNote(id: string, note: string) {
-  const notes = loadNotes();
-  notes[id] = note;
-  localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
-}
 import { labs } from '../data';
 import { TerminalEmulator } from './Terminal';
 
@@ -48,7 +33,6 @@ export const LabsLibrary: React.FC<LabsLibraryProps> = ({ progress, onCompleteLa
 
   if (selectedLab) {
     const isCompleted = progress.completedLabs.includes(selectedLab.id);
-    const [note, setNote] = React.useState(() => loadNotes()[selectedLab.id] || '');
     return (
       <div className="fade-in p-6 overflow-y-auto h-full scrollbar-thin">
         <button className="btn btn-ghost btn-sm gap-1 mb-4" onClick={() => setSelectedLab(null)}>
@@ -78,7 +62,7 @@ export const LabsLibrary: React.FC<LabsLibraryProps> = ({ progress, onCompleteLa
           <div className="card-body p-4">
             <h2 className="font-semibold text-base-content mb-2">Objectives</h2>
             <ul className="space-y-1">
-              {selectedLab.objectives.map((o, i) => (
+              {(selectedLab.objectives ?? []).map((o, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-base-content/80">
                   <CheckCircle size={14} className="text-success mt-0.5 flex-shrink-0" /> {o}
                 </li>
@@ -92,7 +76,7 @@ export const LabsLibrary: React.FC<LabsLibraryProps> = ({ progress, onCompleteLa
           <div className="card-body p-4">
             <h2 className="font-semibold text-base-content mb-2">Instructions</h2>
             <ol className="space-y-2">
-              {selectedLab.instructions.map((inst, i) => (
+              {(selectedLab.instructions ?? []).map((inst, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-base-content/80">
                   <span className="font-mono text-base-content/40 w-5 flex-shrink-0">{i + 1}.</span>
                   {inst}
@@ -130,24 +114,7 @@ export const LabsLibrary: React.FC<LabsLibraryProps> = ({ progress, onCompleteLa
               </div>
             </div>
           </div>
-        
-      )}
-
-        {/* Personal Notes */}
-        <div className="card bg-base-200 mb-4">
-          <div className="card-body p-4">
-            <h2 className="font-semibold text-base-content mb-2">📝 My Notes</h2>
-            <textarea
-              className="textarea textarea-bordered w-full h-32 text-sm"
-              placeholder="Write your notes for this lab here..."
-              value={note}
-              onChange={e => {
-                setNote(e.target.value);
-                saveNote(selectedLab.id, e.target.value);
-              }}
-            />
-          </div>
-        </div>
+        )}
       </div>
     );
   }

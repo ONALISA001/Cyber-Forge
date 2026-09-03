@@ -11,9 +11,10 @@ import { LabsLibrary } from './components/LabsLibrary';
 import { CertRoadmap } from './components/CertRoadmap';
 import { CareerToolkit } from './components/CareerToolkit';
 import { ProfilePage } from './components/ProfilePage';
-import { CommunityResources } from './components/CommunityResources';
 import { MyStory } from './components/MyStory';
+import { CommunityResources } from './components/CommunityResources';
 import { CyberAwareness } from './components/CyberAwareness';
+import { SecPlusPrep } from './components/SecPlusPrep';
 import './styles.css';
 
 const STORAGE_KEY = 'cyberforge_progress';
@@ -26,39 +27,18 @@ const DEFAULT_PROGRESS: ProgressData = {
   streak: 0,
   lastActive: new Date().toISOString(),
   certStatuses: {},
+  watchedVideos: {},
 };
 
 function loadProgress(): ProgressData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      const parsed = JSON.parse(raw) as ProgressData;
-      const today = new Date().toDateString();
-      const last = parsed.lastActive
-        ? new Date(parsed.lastActive).toDateString()
-        : null;
-      const yesterday = new Date(Date.now() - 86400000).toDateString();
-
-      let streak = parsed.streak ?? 0;
-      if (last === today) {
-        // same day — keep streak as is
-      } else if (last === yesterday) {
-        // visited yesterday — increment
-        streak += 1;
-      } else if (last !== today) {
-        // missed a day — reset
-        streak = 1;
-      }
-
-      return {
-        ...DEFAULT_PROGRESS,
-        ...parsed,
-        streak,
-        lastActive: new Date().toISOString(),
-      };
+      const parsed = JSON.parse(raw);
+      return { ...DEFAULT_PROGRESS, ...parsed };
     }
   } catch {}
-  return { ...DEFAULT_PROGRESS, streak: 1, lastActive: new Date().toISOString() };
+  return { ...DEFAULT_PROGRESS };
 }
 
 function saveProgress(p: ProgressData) {
@@ -66,23 +46,11 @@ function saveProgress(p: ProgressData) {
 }
 
 function App() {
-  const [userName, setUserName] = useState<string>(() => {
-    const stored = localStorage.getItem(USER_KEY);
-    return stored && stored.trim().length > 0 ? stored.trim() : '';
-  });
-
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
-    const stored = localStorage.getItem(USER_KEY);
-    return !!stored && stored.trim().length > 0;
-  });
-
-  const [page, setPage] = useState<Page>(() => {
-    const stored = localStorage.getItem(USER_KEY);
-    return stored && stored.trim().length > 0 ? 'dashboard' : 'landing';
-  });
-
+  const [page, setPage] = useState<Page>('landing');
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [progress, setProgress] = useState<ProgressData>(loadProgress);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(() => localStorage.getItem(USER_KEY) || 'Learner');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => { saveProgress(progress); }, [progress]);
@@ -94,18 +62,11 @@ function App() {
 
   const handleGetStarted = useCallback((name: string) => {
     const finalName = name.trim() || 'Learner';
-    localStorage.setItem(USER_KEY, finalName);
     setUserName(finalName);
+    localStorage.setItem(USER_KEY, finalName);
     setIsLoggedIn(true);
-    setPage('dashboard');
-  }, []);
-
-  const handleLogout = useCallback(() => {
-    localStorage.removeItem(USER_KEY);
-    setUserName('');
-    setIsLoggedIn(false);
-    setPage('landing');
-  }, []);
+    navigate('dashboard');
+  }, [navigate]);
 
   const completeCourse = useCallback((courseId: string) => {
     setProgress(prev => {
@@ -133,6 +94,14 @@ function App() {
     setProgress(prev => ({
       ...prev,
       certStatuses: { ...prev.certStatuses, [certId]: status },
+    }));
+  }, []);
+
+  // NEW: mark a YouTube video as watched
+  const markVideoWatched = useCallback((videoId: string) => {
+    setProgress(prev => ({
+      ...prev,
+      watchedVideos: { ...(prev.watchedVideos || {}), [videoId]: true },
     }));
   }, []);
 
@@ -172,10 +141,8 @@ function App() {
       <Sidebar
         currentPage={page}
         isLoggedIn={isLoggedIn}
-        userName={userName}
         isOpen={sidebarOpen}
         onNavigate={navigate}
-        onLogout={handleLogout}
       />
 
       <main className="flex-1 overflow-y-auto md:ml-0">
@@ -198,6 +165,7 @@ function App() {
             progress={progress}
             onComplete={completeCourse}
             onBack={() => navigate('learning-paths')}
+            onVideoWatched={markVideoWatched}
           />
         )}
         {page === 'labs' && (
@@ -212,6 +180,7 @@ function App() {
             onUpdateCertStatus={updateCertStatus}
           />
         )}
+        {page === 'secplus-prep' && <SecPlusPrep />}
         {page === 'career-toolkit' && <CareerToolkit />}
         {page === 'profile' && (
           <ProfilePage

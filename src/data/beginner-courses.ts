@@ -1,5 +1,4 @@
 import { Course } from '../types';
-import { networkingVideos, osiModelVideos, subnettingVideos } from './videos';
 
 export const beginnerCourses: Course[] = [
   {
@@ -64,7 +63,40 @@ export const beginnerCourses: Course[] = [
           { name: 'Wireshark Official Documentation', url: 'https://www.wireshark.org/docs/' },
           { name: 'Cisco Networking Basics Course (NetAcad)', url: 'https://www.netacad.com/' }
         ],
-        videos: networkingVideos
+        keyConcepts: [
+          { term: 'LAN', definition: 'Local Area Network — devices in a single building/campus' },
+          { term: 'WAN', definition: 'Wide Area Network — spans cities or countries (e.g. the internet)' },
+          { term: 'Packet', definition: 'A unit of data at Layer 3; includes source/destination IP headers' },
+          { term: 'Bandwidth', definition: 'Maximum theoretical data rate of a link (Mbps/Gbps)' },
+          { term: 'Latency', definition: 'Time delay for data to travel from source to destination' },
+          { term: 'Client-Server', definition: 'Architecture where dedicated servers provide services to clients' },
+        ],
+        youtubeIds: ['3QhU9jd03a0', 'vv4y_uOneC0'],
+        quiz: [
+          {
+            question: 'Which network type covers a single building or campus?',
+            options: ['WAN', 'LAN', 'MAN', 'PAN'],
+            answer: 1,
+            explanation: 'A LAN (Local Area Network) connects devices in a limited geographic area like a building or campus. WANs span cities or countries.'
+          },
+          {
+            question: 'What is the difference between bandwidth and throughput?',
+            options: [
+              'They are the same thing',
+              'Bandwidth is maximum theoretical speed; throughput is actual achieved speed',
+              'Throughput is faster than bandwidth',
+              'Bandwidth is measured in milliseconds'
+            ],
+            answer: 1,
+            explanation: 'Bandwidth is the maximum theoretical capacity of a link. Throughput is the actual data rate achieved, always lower than bandwidth due to overhead, congestion, and errors.'
+          },
+          {
+            question: 'Which organization defines Ethernet standards like 802.3?',
+            options: ['IETF', 'ITU', 'IEEE', 'ISO'],
+            answer: 2,
+            explanation: 'The IEEE (Institute of Electrical and Electronics Engineers) defines Ethernet (802.3) and Wi-Fi (802.11) standards. IETF manages internet protocols via RFCs. ISO created the OSI model.'
+          },
+        ]
       },
       {
         title: 'OSI Model Deep Dive',
@@ -121,7 +153,35 @@ export const beginnerCourses: Course[] = [
           { name: 'Practical Packet Analysis by Chris Sanders (No Starch Press)' },
           { name: 'OSI Model Explained - Cisco Learning Network', url: 'https://learningnetwork.cisco.com/' }
         ],
-        videos: osiModelVideos
+        keyConcepts: [
+          { term: 'Layer 1 — Physical', definition: 'Raw bit transmission over cables/wireless; attacks: wiretapping, jamming' },
+          { term: 'Layer 2 — Data Link', definition: 'MAC addressing, Ethernet frames; attacks: ARP spoofing, MAC flooding' },
+          { term: 'Layer 3 — Network', definition: 'IP routing between networks; attacks: IP spoofing, BGP hijacking' },
+          { term: 'Layer 4 — Transport', definition: 'TCP/UDP ports, end-to-end delivery; attacks: SYN flood, port scanning' },
+          { term: 'Layer 7 — Application', definition: 'HTTP, DNS, SMTP; attacks: SQLi, XSS, phishing' },
+          { term: 'Encapsulation', definition: 'Headers added at each layer going down; removed going up (de-encapsulation)' },
+        ],
+        youtubeIds: ['LANB3CFUkqA', 'OTwp3olo3P0'],
+        quiz: [
+          {
+            question: 'At which OSI layer does ARP spoofing occur?',
+            options: ['Layer 3 — Network', 'Layer 2 — Data Link', 'Layer 4 — Transport', 'Layer 7 — Application'],
+            answer: 1,
+            explanation: 'ARP spoofing targets the Data Link layer (Layer 2) by sending forged ARP replies that map a legitimate IP address to the attacker\'s MAC address, redirecting traffic through the attacker.'
+          },
+          {
+            question: 'Which layer adds IP headers to data packets?',
+            options: ['Layer 2', 'Layer 4', 'Layer 3', 'Layer 5'],
+            answer: 2,
+            explanation: 'The Network layer (Layer 3) adds IP headers containing source and destination IP addresses, enabling routing between different networks.'
+          },
+          {
+            question: 'SSL/TLS encryption operates at which OSI layer?',
+            options: ['Layer 4 — Transport', 'Layer 3 — Network', 'Layer 6 — Presentation', 'Layer 7 — Application'],
+            answer: 2,
+            explanation: 'TLS/SSL operates at the Presentation layer (Layer 6), handling encryption, decryption, and data format translation between the application and transport layers.'
+          },
+        ]
       },
       {
         title: 'TCP/IP Protocol Suite',
@@ -217,8 +277,7 @@ export const beginnerCourses: Course[] = [
           { name: 'Subnetting Practice — Subnetting.org', url: 'https://subnetting.org/' },
           { name: 'CompTIA Network+ Certification All-in-One Exam Guide by Mike Meyers' },
           { name: 'ipcalc — IP Subnet Calculator', url: 'https://jodies.de/ipcalc' }
-        ],
-        videos: subnettingVideos
+        ]
       },
       {
         title: 'DNS, DHCP & HTTP',

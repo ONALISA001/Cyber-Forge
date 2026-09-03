@@ -10,6 +10,7 @@ import {
   Users,
   Map,
   ShieldAlert,
+  Target,
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -17,9 +18,7 @@ interface SidebarProps {
   currentPage: Page;
   isLoggedIn: boolean;
   isOpen: boolean;
-  userName: string;
   onNavigate: (page: Page) => void;
-  onLogout?: () => void;
 }
 
 const navItems: {
@@ -27,26 +26,26 @@ const navItems: {
   label: string;
   icon: React.ReactNode;
   requiresAuth: boolean;
+  badge?: string;
 }[] = [
-  { page: 'landing',         label: 'Home',           icon: <Shield size={18} />,         requiresAuth: false },
-  { page: 'dashboard',       label: 'Dashboard',      icon: <LayoutDashboard size={18} />, requiresAuth: true },
-  { page: 'learning-paths',  label: 'Learning Paths', icon: <Map size={18} />,            requiresAuth: true },
-  { page: 'labs',            label: 'Labs Library',   icon: <FlaskConical size={18} />,   requiresAuth: true },
-  { page: 'certifications',  label: 'Certifications', icon: <Award size={18} />,          requiresAuth: true },
-  { page: 'career-toolkit',  label: 'Career Toolkit', icon: <Briefcase size={18} />,      requiresAuth: true },
-  { page: 'profile',         label: 'Profile',        icon: <User size={18} />,           requiresAuth: true },
-  { page: 'community',       label: 'Community',      icon: <Users size={18} />,          requiresAuth: true },
-  { page: 'cyber-awareness', label: 'Stay Safe',      icon: <ShieldAlert size={18} />,    requiresAuth: false },
-  { page: 'my-story',        label: 'My Story',       icon: <BookOpen size={18} />,       requiresAuth: false },
+  { page: 'landing',        label: 'Home',             icon: <Shield size={18} />,          requiresAuth: false },
+  { page: 'dashboard',      label: 'Dashboard',        icon: <LayoutDashboard size={18} />, requiresAuth: true },
+  { page: 'learning-paths', label: 'Learning Paths',   icon: <Map size={18} />,             requiresAuth: true },
+  { page: 'labs',           label: 'Labs Library',     icon: <FlaskConical size={18} />,    requiresAuth: true },
+  { page: 'certifications', label: 'Certifications',   icon: <Award size={18} />,           requiresAuth: true },
+  { page: 'secplus-prep',   label: 'Security+ Prep',   icon: <Target size={18} />,          requiresAuth: true, badge: '150+' },
+  { page: 'career-toolkit', label: 'Career Toolkit',   icon: <Briefcase size={18} />,       requiresAuth: true },
+  { page: 'profile',        label: 'Profile',          icon: <User size={18} />,            requiresAuth: true },
+  { page: 'community',      label: 'Community',        icon: <Users size={18} />,           requiresAuth: true },
+  { page: 'cyber-awareness',label: 'Stay Safe',        icon: <ShieldAlert size={18} />,     requiresAuth: false },
+  { page: 'my-story',       label: 'My Story',         icon: <BookOpen size={18} />,        requiresAuth: false },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({
   currentPage,
   isLoggedIn,
   isOpen,
-  userName,
   onNavigate,
-  onLogout,
 }) => {
   const visibleItems = navItems.filter(
     item => !item.requiresAuth || isLoggedIn
@@ -80,34 +79,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
               onClick={() => onNavigate(item.page)}
             >
               {item.icon}
-              {item.label}
+              <span className="flex-1 text-left">{item.label}</span>
+              {item.badge && (
+                <span className="badge badge-success badge-xs">{item.badge}</span>
+              )}
             </button>
           </li>
         ))}
       </ul>
 
-      {/* User Info + Logout */}
-      {isLoggedIn && userName && (
-        <div className="p-3 border-t border-base-300">
-          <p className="text-xs text-base-content/50 text-center mb-1">Logged in as:</p>
-          <p className="text-sm font-semibold text-base-content text-center truncate mb-2">
-            {userName}
-          </p>
-          {onLogout && (
-            <button
-              onClick={onLogout}
-              className="btn btn-ghost btn-xs w-full text-xs"
-            >
-              Logout
-            </button>
-          )}
-        </div>
-      )}
-
       {/* Footer */}
       <div className="p-3 border-t border-base-300">
         <p className="text-xs text-base-content/30 text-center font-mono">
-          cyber-forge v1.0
+          cyber-forge v2.0
         </p>
       </div>
     </aside>
