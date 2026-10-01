@@ -16,6 +16,8 @@ import { CommunityResources } from './components/CommunityResources';
 import { CyberAwareness } from './components/CyberAwareness';
 import { SecPlusPrep } from './components/SecPlusPrep';
 import { TerminalEmulator } from './components/Terminal';
+import { AuthModal, AuthMode } from './components/AuthModal';
+import { getUser, logout, onAuthChange, handleAuthCallback, AUTH_EVENTS, type User } from '@netlify/identity';
 import './styles.css';
 
 const STORAGE_KEY = 'cyberforge_progress';
@@ -50,9 +52,13 @@ function App() {
   const [page, setPage] = useState<Page>('landing');
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [progress, setProgress] = useState<ProgressData>(loadProgress);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState(() => localStorage.getItem(USER_KEY) || 'Learner');
+  const [user, setUser] = useState<User | null>(null);
+  const [authReady, setAuthReady] = useState(false);
+  const [authMode, setAuthMode] = useState<AuthMode | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const isLoggedIn = user !== null;
+  const userName = user?.name || user?.email?.split('@')[0] || localStorage.getItem(USER_KEY) || 'Learner';
 
   useEffect(() => { saveProgress(progress); }, [progress]);
 
@@ -61,13 +67,57 @@ function App() {
     setSidebarOpen(false);
   }, []);
 
-  const handleGetStarted = useCallback((name: string) => {
-    const finalName = name.trim() || 'Learner';
-    setUserName(finalName);
-    localStorage.setItem(USER_KEY, finalName);
-    setIsLoggedIn(true);
+  // Restore an existing session and handle email confirmation / password recovery links
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const result = await handleAuthCallback();
+        if (result?.type === 'recovery') setAuthMode('reset');
+      } catch {}
+      const current = await getUser();
+      if (cancelled) return;
+      setUser(current);
+      if (current) setPage(p => (p === 'landing' ? 'dashboard' : p));
+      setAuthReady(true);
+    })();
+
+    const unsubscribe = onAuthChange((event, u) => {
+      if (event === AUTH_EVENTS.LOGOUT) {
+        setUser(null);
+        setPage('landing');
+      } else {
+        setUser(u);
+      }
+    });
+    return () => { cancelled = true; unsubscribe(); };
+  }, []);
+
+  const handleGetStarted = useCallback(() => {
+    if (isLoggedIn) navigate('dashboard');
+    else setAuthMode('signup');
+  }, [isLoggedIn, navigate]);
+
+  const handleAuthSuccess = useCallback(async () => {
+    setUser(await getUser());
+    setAuthMode(null);
     navigate('dashboard');
   }, [navigate]);
+
+  const handleLogout = useCallback(async () => {
+    try { await logout(); } catch {}
+    setUser(null);
+    navigate('landing');
+  }, [navigate]);
+
+  const authModal = authMode && (
+    <AuthModal
+      key={authMode}
+      initialMode={authMode}
+      onClose={() => setAuthMode(null)}
+      onSuccess={handleAuthSuccess}
+    />
+  );
 
   const completeCourse = useCallback((courseId: string) => {
     setProgress(prev => {
@@ -112,8 +162,27 @@ function App() {
     setSidebarOpen(false);
   }, []);
 
-  if (page === 'landing') {
-    return <LandingPage onGetStarted={handleGetStarted} />;
+  if (!authReady) {
+    return (
+      <div data-theme="dark" className="min-h-screen bg-base-100 flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg text-success" />
+      </div>
+    );
+  }
+
+  if (page === 'landing' || (!isLoggedIn && page !== 'cyber-awareness' && page !== 'my-story')) {
+    return (
+      <>
+        <LandingPage
+          isLoggedIn={isLoggedIn}
+          userName={userName}
+          onGetStarted={handleGetStarted}
+          onLogin={() => setAuthMode('login')}
+          onLogout={handleLogout}
+        />
+        {authModal}
+      </>
+    );
   }
 
   return (
@@ -143,7 +212,11 @@ function App() {
         currentPage={page}
         isLoggedIn={isLoggedIn}
         isOpen={sidebarOpen}
+        userName={userName}
+        userEmail={user?.email}
         onNavigate={navigate}
+        onLogin={() => setAuthMode('login')}
+        onLogout={handleLogout}
       />
 
       <main className="flex-1 overflow-y-auto md:ml-0">
@@ -193,8 +266,8 @@ function App() {
         {page === 'my-story' && <MyStory />}
         {page === 'cyber-awareness' && <CyberAwareness />}
         {page === 'terminal' && <TerminalEmulator />}
-      
       </main>
+      {authModal}
     </div>
   );
 }

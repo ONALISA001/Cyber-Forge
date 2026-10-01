@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Shield, ChevronRight, Lock, BookOpen, Award, Terminal } from 'lucide-react';
+import { Shield, ChevronRight, Lock, BookOpen, Award, Terminal, LogIn, LogOut } from 'lucide-react';
 
 interface LandingPageProps {
-  onGetStarted: (name: string) => void;
+  isLoggedIn: boolean;
+  userName: string;
+  onGetStarted: () => void;
+  onLogin: () => void;
+  onLogout: () => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
-  const [name, setName] = useState('');
+export const LandingPage: React.FC<LandingPageProps> = ({ isLoggedIn, userName, onGetStarted, onLogin, onLogout }) => {
 
   return (
     <div data-theme="dark" className="min-h-screen bg-base-100 overflow-y-auto">
@@ -26,19 +29,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           Theory. Labs. Certs. Career guidance. All in one place.
         </p>
 
-        {/* Name input + CTA */}
+        {/* Auth CTA */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-md mx-auto mb-4">
-          <input
-            type="text"
-            className="input input-bordered w-full sm:w-auto flex-1"
-            placeholder="Your name (optional)"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && onGetStarted(name)}
-          />
-          <button className="btn btn-success gap-2 whitespace-nowrap" onClick={() => onGetStarted(name)}>
-            Start Your Journey <ChevronRight size={18} />
-          </button>
+          {isLoggedIn ? (
+            <>
+              <button className="btn btn-success gap-2 whitespace-nowrap" onClick={onGetStarted}>
+                Continue as {userName} <ChevronRight size={18} />
+              </button>
+              <button className="btn btn-ghost gap-2 whitespace-nowrap" onClick={onLogout}>
+                <LogOut size={16} /> Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="btn btn-success gap-2 whitespace-nowrap" onClick={onGetStarted}>
+                Start Your Journey <ChevronRight size={18} />
+              </button>
+              <button className="btn btn-outline btn-success gap-2 whitespace-nowrap" onClick={onLogin}>
+                <LogIn size={16} /> Log in
+              </button>
+            </>
+          )}
         </div>
         <p className="text-sm text-base-content/40">100% Free — No credit card required</p>
       </div>

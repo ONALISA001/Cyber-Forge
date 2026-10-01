@@ -12,6 +12,8 @@ import {
   ShieldAlert,
   Target,
   Terminal,
+  LogIn,
+  LogOut,
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -19,7 +21,11 @@ interface SidebarProps {
   currentPage: Page;
   isLoggedIn: boolean;
   isOpen: boolean;
+  userName: string;
+  userEmail?: string;
   onNavigate: (page: Page) => void;
+  onLogin: () => void;
+  onLogout: () => void;
 }
 
 const navItems: {
@@ -47,7 +53,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   currentPage,
   isLoggedIn,
   isOpen,
+  userName,
+  userEmail,
   onNavigate,
+  onLogin,
+  onLogout,
 }) => {
   const visibleItems = navItems.filter(
     item => !item.requiresAuth || isLoggedIn
@@ -92,6 +102,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Footer */}
       <div className="p-3 border-t border-base-300">
+        {isLoggedIn ? (
+          <div className="mb-3">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center shrink-0">
+                <span className="text-sm font-bold text-success">{userName.charAt(0).toUpperCase()}</span>
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-base-content truncate">{userName}</p>
+                {userEmail && <p className="text-xs text-base-content/50 truncate">{userEmail}</p>}
+              </div>
+            </div>
+            <button className="btn btn-ghost btn-sm w-full justify-start gap-2" onClick={onLogout}>
+              <LogOut size={16} /> Log out
+            </button>
+          </div>
+        ) : (
+          <button className="btn btn-success btn-sm w-full gap-2 mb-3" onClick={onLogin}>
+            <LogIn size={16} /> Log in
+          </button>
+        )}
         <p className="text-xs text-base-content/30 text-center font-mono">
           cyber-forge v2.0
         </p>
