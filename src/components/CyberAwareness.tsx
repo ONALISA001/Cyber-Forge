@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
   Smartphone, CreditCard, Eye, Wifi, ChevronDown, ChevronUp,
-  AlertTriangle, CheckCircle, XCircle, Info, ShieldAlert,
+  AlertTriangle, CheckCircle, XCircle, Info, ShieldAlert, Phone, Share2,
+  LockKeyhole, Copy, Check,
 } from 'lucide-react';
 
 interface Tip {
@@ -34,7 +35,7 @@ const sections: ThreatSection[] = [
     subtitle: 'What to do before and after your phone is stolen',
     warning: 'In Mukuru and many Nairobi estates, phone snatching happens in seconds. Be ready before it happens.',
     dos: [
-      { icon: <CheckCircle size={16} />, title: 'Set a SIM card PIN', description: 'Go to Settings > SIM > SIM Lock. Set a 4-digit PIN. If your SIM is stolen, nobody can use it without this code.' },
+      { icon: <CheckCircle size={16} />, title: 'Set a SIM card PIN', description: 'Go to Settings > SIM > SIM Lock. Set a 4-digit PIN. A SIM PIN adds a layer of protection if someone removes your SIM. It does not replace your account and phone security controls.' },
       { icon: <CheckCircle size={16} />, title: 'Write down your IMEI number', description: 'Dial *#06# and note the number. If your phone is stolen, call Safaricom/Airtel with this number to block it permanently.' },
       { icon: <CheckCircle size={16} />, title: 'Enable screen lock always', description: 'Use a PIN, pattern, or fingerprint. Never leave your phone unlocked, even for a second in public.' },
       { icon: <CheckCircle size={16} />, title: 'Know the Safaricom SIM swap block number', description: 'Call 100 or *100# immediately if your SIM is stolen. Ask them to block SIM swap requests on your number.' },
@@ -55,12 +56,12 @@ const sections: ThreatSection[] = [
     borderColor: 'border-warning/20',
     title: 'Mobile Money Fraud (M-Pesa Scams)',
     subtitle: 'Common tricks used to steal your M-Pesa money',
-    warning: 'M-Pesa fraud is the most common financial crime in Kenya. Scammers are professional and convincing.',
+    warning: 'Mobile-money scams can be convincing. Treat unexpected payment, reversal, prize, and account-verification messages as untrusted until you verify them independently.',
     dos: [
       { icon: <CheckCircle size={16} />, title: 'Always confirm the name before sending money', description: 'M-Pesa shows the account holder name before you confirm. Read it carefully. If the name is wrong, cancel.' },
-      { icon: <CheckCircle size={16} />, title: 'Verify "wrong transfer" claims by calling Safaricom', description: 'If someone says you received their money by mistake, call 100 to verify before sending anything back. Most are scams.' },
+      { icon: <CheckCircle size={16} />, title: 'Verify "wrong transfer" claims by calling Safaricom', description: 'If someone says you received their money by mistake, call 100 to verify before sending anything back. A reversal request should be verified through the provider’s official channels before you act.' },
       { icon: <CheckCircle size={16} />, title: 'Check your M-Pesa balance yourself', description: 'Never trust a stranger who says they sent you money. Check your own balance via *334# before doing anything.' },
-      { icon: <CheckCircle size={16} />, title: 'Use M-Pesa lock (Jificha)', description: 'Safaricom has a lock feature. Dial *334# and explore security options to lock your M-Pesa when not in use.' },
+      { icon: <CheckCircle size={16} />, title: 'Use available account-security controls', description: 'Use the security controls currently offered by your mobile-money provider, and check the provider’s official app, USSD menu, or support channel for the current steps.' },
       { icon: <CheckCircle size={16} />, title: 'Change your M-Pesa PIN regularly', description: 'Go to M-Pesa menu > My Account > Change PIN. Use a PIN that is not your birthday or phone number.' },
     ],
     donts: [
@@ -81,9 +82,9 @@ const sections: ThreatSection[] = [
     subtitle: 'How scammers trick you using words, not technology',
     warning: 'Social engineering means someone is lying to you to steal from you. They sound professional and urgent.',
     dos: [
-      { icon: <CheckCircle size={16} />, title: 'Slow down when someone creates urgency', description: 'Scammers always say "act now" or "you will lose your account". Real companies give you time. If someone is rushing you, it is a scam.' },
+      { icon: <CheckCircle size={16} />, title: 'Slow down when someone creates urgency', description: 'Scammers always say "act now" or "you will lose your account". Urgency is a warning sign, but it is not proof by itself. Pause and verify the request using a trusted channel.' },
       { icon: <CheckCircle size={16} />, title: 'Call back on official numbers', description: 'If someone calls claiming to be from your bank or Safaricom, hang up and call the official number yourself to verify.' },
-      { icon: <CheckCircle size={16} />, title: 'Confirm links before clicking', description: 'Safaricom links look like safaricom.co.ke. Scam links look like safar1com.net or m-pesa-kenya.com. Look carefully before tapping.' },
+      { icon: <CheckCircle size={16} />, title: 'Confirm links before clicking', description: 'Check the full domain before signing in or entering information. Do not rely on logos, familiar wording, or a display name to prove a message is genuine.' },
       { icon: <CheckCircle size={16} />, title: 'Trust your instincts', description: 'If something feels wrong, it probably is. You are allowed to say "I need to think about it" and hang up.' },
     ],
     donts: [
@@ -101,11 +102,11 @@ const sections: ThreatSection[] = [
     borderColor: 'border-success/20',
     title: 'Public WiFi Dangers',
     subtitle: 'Staying safe on free WiFi at cyber cafes, hotspots, and shops',
-    warning: 'Free WiFi is convenient but dangerous. Anyone on the same network can see what you are doing.',
+    warning: 'Public Wi-Fi can expose you to unsafe networks and interception risks. Modern HTTPS and app encryption help, but sensitive activity is still better done on a trusted connection.',
     dos: [
       { icon: <CheckCircle size={16} />, title: 'Use mobile data for M-Pesa and banking', description: 'Never open your M-Pesa, bank app, or enter passwords on public WiFi. Use your own mobile data for anything financial.' },
       { icon: <CheckCircle size={16} />, title: 'Log out of everything after using a shared computer', description: 'At a cyber cafe, always log out of Gmail, Facebook, and any account before leaving. Clear the browser history too.' },
-      { icon: <CheckCircle size={16} />, title: 'Check for HTTPS before entering any information', description: 'Look for a padlock icon in the browser address bar. If it is missing, do not enter any personal information on that site.' },
+      { icon: <CheckCircle size={16} />, title: 'Check for HTTPS before entering any information', description: 'Check that the address uses HTTPS and that the domain is the one you intended to visit. HTTPS protects the connection; it does not prove that the site itself is legitimate.' },
       { icon: <CheckCircle size={16} />, title: 'Forget the network after use', description: 'On your phone, go to WiFi settings and tap "Forget" on public networks so your phone does not auto-connect next time.' },
     ],
     donts: [
@@ -119,9 +120,20 @@ const sections: ThreatSection[] = [
 
 export const CyberAwareness: React.FC = () => {
   const [openSection, setOpenSection] = useState<string | null>('phone-theft');
+  const [copied, setCopied] = useState(false);
+
+  const copyPage = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      setCopied(false);
+    }
+  };
 
   return (
-    <div className="fade-in p-6 overflow-y-auto h-full scrollbar-thin max-w-3xl mx-auto">
+    <div className="fade-in p-4 sm:p-6 overflow-y-auto h-full scrollbar-thin max-w-4xl mx-auto" aria-label="Cybersecurity safety guide">
 
       {/* Hero */}
       <div className="mb-8">
@@ -132,8 +144,8 @@ export const CyberAwareness: React.FC = () => {
           Protect Yourself <span className="text-success font-mono cyber-glow">Online and Offline</span>
         </h1>
         <p className="text-base-content/60 text-base leading-relaxed">
-          You do not need to be a tech expert to stay safe. These are simple, practical steps
-          anyone in Nairobi can follow to protect their phone, money, and personal information.
+          You do not need to be a tech expert to stay safer. Use this quick guide to protect your
+          phone, money, accounts, and personal information in everyday situations.
         </p>
       </div>
 
@@ -143,7 +155,7 @@ export const CyberAwareness: React.FC = () => {
         <div>
           <p className="text-sm font-semibold text-base-content">Real threats, real people</p>
           <p className="text-xs text-base-content/60 mt-0.5">
-            These scams happen every day in Nairobi. Knowing how they work is your best protection.
+            If something feels urgent, unexpected, or asks for a secret code, pause and verify it through an official channel.
           </p>
         </div>
       </div>
@@ -158,9 +170,12 @@ export const CyberAwareness: React.FC = () => {
               className={`card border ${section.borderColor} ${isOpen ? section.bgColor : 'bg-base-200'} transition-colors`}
             >
               {/* Section header */}
-              <div
-                className="card-body p-4 cursor-pointer"
+              <button
+                type="button"
+                className="card-body p-4 w-full text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-success/60 rounded-[inherit]"
                 onClick={() => setOpenSection(isOpen ? null : section.id)}
+                aria-expanded={isOpen}
+                aria-controls={`${section.id}-content`}
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -182,11 +197,11 @@ export const CyberAwareness: React.FC = () => {
                     <p className="text-xs text-base-content/70 leading-relaxed">{section.warning}</p>
                   </div>
                 )}
-              </div>
+              </button>
 
               {/* Expanded content */}
               {isOpen && (
-                <div className="px-4 pb-4 space-y-4">
+                <div id={`${section.id}-content`} className="px-4 pb-4 space-y-4">
 
                   {/* Do's */}
                   <div>
@@ -230,27 +245,61 @@ export const CyberAwareness: React.FC = () => {
       {/* Emergency contacts */}
       <div className="card bg-base-200 border border-base-300 mb-8">
         <div className="card-body p-5">
-          <h2 className="text-base font-semibold text-base-content mb-3 flex items-center gap-2">
-            <AlertTriangle size={16} className="text-error" /> Emergency Contacts
-          </h2>
-          <div className="space-y-2">
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <h2 className="text-base font-semibold text-base-content flex items-center gap-2">
+                <AlertTriangle size={16} className="text-error" /> If something goes wrong
+              </h2>
+              <p className="text-xs text-base-content/50 mt-1">
+                Act quickly, but use official channels. Never give a caller your PIN, password, or OTP to “fix” the problem.
+              </p>
+            </div>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
             {[
-              { label: 'Safaricom Customer Care', number: '100', desc: 'Report SIM swap, M-Pesa fraud, stolen SIM' },
-              { label: 'Airtel Customer Care', number: '0800 724 000', desc: 'Report stolen SIM or account fraud' },
-              { label: 'DCI Cybercrime Unit', number: '0800 722 203', desc: 'Report online fraud and cybercrime' },
-              { label: 'Kenya Bankers Association', number: '0711 087 000', desc: 'Report bank account fraud' },
+              { label: 'Safaricom Customer Care', number: '100', desc: 'Prepaid support; verify SIM, M-Pesa, and account issues' },
+              { label: 'Airtel Customer Care', number: '0800 724 000', desc: 'Contact Airtel through its official customer-care channels' },
+              { label: 'DCI Fichua', number: '0800 722 203', desc: 'Report crime to the Directorate of Criminal Investigations' },
+              { label: 'Emergency police', number: '999 / 112 / 911', desc: 'For immediate emergencies or danger' },
             ].map((contact, i) => (
               <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-base-300 gap-3">
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-semibold text-base-content">{contact.label}</p>
-                  <p className="text-xs text-base-content/50">{contact.desc}</p>
+                  <p className="text-xs text-base-content/50 leading-relaxed">{contact.desc}</p>
                 </div>
                 <a
-                  href={`tel:${contact.number.replace(/\s/g, '')}`}
+                  href={`tel:${contact.number.replace(/\s/g, '').replace(/\//g, ',')}`}
                   className="btn btn-sm btn-success font-mono shrink-0"
+                  aria-label={`Call ${contact.label} at ${contact.number}`}
                 >
-                  {contact.number}
+                  <Phone size={13} /> {contact.number}
                 </a>
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 p-3 rounded-lg border border-info/20 bg-info/5 text-xs text-base-content/60 leading-relaxed">
+            <strong className="text-base-content">Important:</strong> Contact details can change. Before publishing or relying on a number, verify it from the organisation's official website or app.
+          </div>
+        </div>
+      </div>
+
+      {/* Security checklist */}
+      <div className="card bg-base-200 border border-base-300 mb-8">
+        <div className="card-body p-5">
+          <h2 className="text-base font-semibold text-base-content mb-3 flex items-center gap-2">
+            <LockKeyhole size={16} className="text-success" /> 60-second security check
+          </h2>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {[
+              'Screen lock is enabled',
+              'Important accounts use unique passwords',
+              'Two-factor authentication is enabled where available',
+              'Your recovery email/phone is current',
+              'You know how to lock or locate your phone',
+              'You never share PINs, passwords, or OTPs',
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-2 p-2.5 rounded-lg bg-base-300 text-xs text-base-content/70">
+                <CheckCircle size={14} className="text-success shrink-0" /> {item}
               </div>
             ))}
           </div>
@@ -260,11 +309,15 @@ export const CyberAwareness: React.FC = () => {
       {/* Share prompt */}
       <div className="card bg-success/5 border border-success/20">
         <div className="card-body p-5 text-center">
-          <p className="text-sm font-semibold text-base-content mb-1">Share this with someone you know</p>
-          <p className="text-xs text-base-content/50">
-            You do not need to understand tech to get scammed. Share this page with family, neighbours,
-            and anyone in your community who uses a phone or M-Pesa.
+          <Share2 size={20} className="text-success mx-auto mb-2" />
+          <p className="text-sm font-semibold text-base-content mb-1">Share the safety guide</p>
+          <p className="text-xs text-base-content/50 max-w-xl mx-auto mb-4">
+            Pass these practical checks to family, friends, neighbours, and anyone who uses a phone or mobile money.
           </p>
+          <button type="button" onClick={copyPage} className="btn btn-sm btn-success gap-2" aria-live="polite">
+            {copied ? <Check size={14} /> : <Copy size={14} />}
+            {copied ? 'Link copied' : 'Copy page link'}
+          </button>
         </div>
       </div>
 
