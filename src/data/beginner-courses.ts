@@ -229,7 +229,9 @@ export const beginnerCourses: Course[] = [
           { name: 'TCP/IP Illustrated, Volume 1 by W. Richard Stevens' },
           { name: 'Nmap Network Scanning by Gordon "Fyodor" Lyon', url: 'https://nmap.org/book/' },
           { name: 'IANA Service Name and Transport Protocol Port Number Registry', url: 'https://www.iana.org/assignments/service-names-port-numbers/' }
-        ]
+        ],
+        youtubeIds: ['F5Ri_HhziI0', 'uwoD5YsGACg'],
+        
       },
       {
         title: 'IP Addressing & Subnetting',
@@ -277,7 +279,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Subnetting Practice — Subnetting.org', url: 'https://subnetting.org/' },
           { name: 'CompTIA Network+ Certification All-in-One Exam Guide by Mike Meyers' },
           { name: 'ipcalc — IP Subnet Calculator', url: 'https://jodies.de/ipcalc' }
-        ]
+        ],
+        youtubeIds: ['s_ys22m1Zms', 'BWZ-MkIVjuU'],
       },
       {
         title: 'DNS, DHCP & HTTP',
@@ -325,7 +328,8 @@ export const beginnerCourses: Course[] = [
           { name: 'DNS and BIND by Cricket Liu & Paul Albitz (O\'Reilly)' },
           { name: 'Mozilla HTTP Documentation (MDN Web Docs)', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP' },
           { name: 'testssl.sh — TLS/SSL Testing Tool', url: 'https://testssl.sh/' }
-        ]
+        ],
+        youtubeIds: ['nyH0nYhMW9M', 'S8j2fkJ_4Q4'],
       },
       {
         title: 'Network Devices & Topologies',
@@ -373,7 +377,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Cisco Packet Tracer (Free Network Simulator)', url: 'https://www.netacad.com/courses/packet-tracer' },
           { name: 'GNS3 Network Emulator', url: 'https://www.gns3.com/' },
           { name: 'NIST SP 800-207: Zero Trust Architecture', url: 'https://csrc.nist.gov/publications/detail/sp/800-207/final' }
-        ]
+        ],
+        youtubeIds: ['1z0ULvg_pW8', 'Ofjsh_E4HFY'],
       },
       {
         title: 'Wireless Networking Basics',
@@ -417,7 +422,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Aircrack-ng Documentation and Tutorials', url: 'https://www.aircrack-ng.org/doku.php' },
           { name: 'Hacking Exposed Wireless by Joshua Wright & Johnny Cache' },
           { name: 'WiFi Alliance — Security Resources', url: 'https://www.wi-fi.org/discover-wi-fi/security' }
-        ]
+        ],
+        youtubeIds: ['s_ys22m1Zms', 'qKC2Squz0c8'],
       }
     ]
   },
@@ -483,7 +489,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Windows Internals by Mark Russinovich, David Solomon, and Alex Ionescu' },
           { name: 'CIS Microsoft Windows Benchmarks', url: 'https://www.cisecurity.org/benchmark/microsoft_windows_desktop' },
           { name: 'Microsoft Security Documentation', url: 'https://learn.microsoft.com/en-us/security/' }
-        ]
+        ],
+        youtubeIds: ['RcZn7kSZ8-k', 'Nt_SB2OQKBM'],
       },
       {
         title: 'Windows Command Line & PowerShell',
@@ -531,7 +538,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Learn PowerShell in a Month of Lunches by Don Jones and Jeffrey Hicks' },
           { name: 'PowerShell Documentation', url: 'https://learn.microsoft.com/en-us/powershell/' },
           { name: 'SANS PowerShell Cheat Sheet', url: 'https://www.sans.org/blog/sans-powershell-cheat-sheet/' }
-        ]
+        ], 
+        youtubeIds: ['VFuHLqjkQUY', 'a5W7NdrqMoU'],
       },
       {
         title: 'Linux Fundamentals',
@@ -579,7 +587,8 @@ export const beginnerCourses: Course[] = [
           { name: 'The Linux Command Line by William Shotts (free online)', url: 'https://linuxcommand.org/tlcl.php' },
           { name: 'Linux Journey — Interactive Linux Learning', url: 'https://linuxjourney.com/' },
           { name: 'OverTheWire Bandit Wargame (Linux CLI Practice)', url: 'https://overthewire.org/wargames/bandit/' }
-        ]
+        ],
+        youtubeIds: ['ROjZy1WbCIA', 's3ii48qYBxA'],
       },
       {
         title: 'Linux Terminal Mastery',
@@ -627,7 +636,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Linux Bible by Christopher Negus' },
           { name: 'OverTheWire Wargames (Bandit, Leviathan, Natas)', url: 'https://overthewire.org/wargames/' },
           { name: 'Bash Scripting Guide (TLDP)', url: 'https://tldp.org/LDP/abs/html/' }
-        ]
+        ],
+        youtubeIds: ['oxuRxtrO2Ag', 'GtovwKDemnI'],
       },
       {
         title: 'File Systems & Permissions',
@@ -675,7 +685,8 @@ export const beginnerCourses: Course[] = [
           { name: 'GTFOBins — Unix Binaries for Privilege Escalation', url: 'https://gtfobins.github.io/' },
           { name: 'AIDE — Advanced Intrusion Detection Environment', url: 'https://aide.github.io/' },
           { name: 'Sysinternals Suite by Mark Russinovich', url: 'https://learn.microsoft.com/en-us/sysinternals/' }
-        ]
+        ],
+        youtubeIds: ['HbgzrKJvDg8', 'F-gskSl4pwQ'],
       },
       {
         title: 'Process & Service Management',
@@ -723,7 +734,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Sysinternals Suite (Process Explorer, Autoruns, Process Monitor)', url: 'https://learn.microsoft.com/en-us/sysinternals/' },
           { name: 'SANS Hunt Evil Poster — Know Normal, Find Evil', url: 'https://www.sans.org/posters/hunt-evil/' },
           { name: 'How Linux Works by Brian Ward (No Starch Press)' }
-        ]
+        ],
+        youtubeIds: ['TJzlywxGBLQ', 'nKKtmRF44kA'],
       },
       {
         title: 'System Logging Basics',
@@ -771,7 +783,8 @@ export const beginnerCourses: Course[] = [
           { name: 'Windows Security Log Encyclopedia', url: 'https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/' },
           { name: 'Sysmon — Sysinternals', url: 'https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon' },
           { name: 'SANS SEC555: SIEM with Tactical Analytics', url: 'https://www.sans.org/cyber-security-courses/siem-with-tactical-analytics/' }
-        ]
+        ],
+        youtubeIds: ['inWWhr5tnEA', 'LZ3iUl5gB6g'],
       }
     ]
   },

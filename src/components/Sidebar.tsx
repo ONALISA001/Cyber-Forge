@@ -11,6 +11,7 @@ import {
   Map,
   ShieldAlert,
   Target,
+  Terminal,
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -39,6 +40,7 @@ const navItems: {
   { page: 'community',      label: 'Community',        icon: <Users size={18} />,           requiresAuth: true },
   { page: 'cyber-awareness',label: 'Stay Safe',        icon: <ShieldAlert size={18} />,     requiresAuth: false },
   { page: 'my-story',       label: 'My Story',         icon: <BookOpen size={18} />,        requiresAuth: false },
+  { page: 'terminal', label: 'Practice Lab', icon: <Terminal size={18} />, requiresAuth: true },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({

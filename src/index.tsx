@@ -15,6 +15,7 @@ import { MyStory } from './components/MyStory';
 import { CommunityResources } from './components/CommunityResources';
 import { CyberAwareness } from './components/CyberAwareness';
 import { SecPlusPrep } from './components/SecPlusPrep';
+import { TerminalEmulator } from './components/Terminal';
 import './styles.css';
 
 const STORAGE_KEY = 'cyberforge_progress';
@@ -191,6 +192,8 @@ function App() {
         {page === 'community' && <CommunityResources />}
         {page === 'my-story' && <MyStory />}
         {page === 'cyber-awareness' && <CyberAwareness />}
+        {page === 'terminal' && <TerminalEmulator />}
+      
       </main>
     </div>
   );
