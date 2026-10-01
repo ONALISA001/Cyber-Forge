@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {
   Smartphone, CreditCard, Eye, Wifi, ChevronDown, ChevronUp,
   AlertTriangle, CheckCircle, XCircle, Info, ShieldAlert, Phone, Share2,
-  LockKeyhole, Copy, Check,
+  LockKeyhole, Copy, Check, MessageCircle, Briefcase, Banknote, ShoppingBag,
+  KeyRound, Download, Fingerprint, HeartCrack, RotateCcw, MessageSquareWarning,
+  HelpCircle, Lightbulb,
 } from 'lucide-react';
 
 interface Tip {
@@ -116,11 +118,233 @@ const sections: ThreatSection[] = [
       'Do not save passwords in a public computer browser',
     ],
   },
+  {
+    id: 'whatsapp-hijack',
+    icon: <MessageCircle size={22} />,
+    color: 'text-success',
+    bgColor: 'bg-success/5',
+    borderColor: 'border-success/20',
+    title: 'WhatsApp & Social Media Account Hijacking',
+    subtitle: 'How scammers take over your account and use it to scam your friends',
+    warning: 'A common trick: a "friend" messages you saying they sent a code to your number by mistake and asks you to forward it. That code is your WhatsApp login code. Once you send it, they own your account.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Turn on WhatsApp Two-Step Verification', description: 'Go to WhatsApp Settings > Account > Two-step verification > Turn on. Set a 6-digit PIN and add an email. Even if someone gets your SMS code, they cannot log in without this PIN.' },
+      { icon: <CheckCircle size={16} />, title: 'Check Linked Devices regularly', description: 'Go to WhatsApp Settings > Linked Devices. If you see a computer or browser you do not recognise, tap it and log out immediately.' },
+      { icon: <CheckCircle size={16} />, title: 'Turn on 2FA for Facebook, Instagram and TikTok', description: 'Look in Settings > Security (or Accounts Centre > Password and security) and turn on two-factor authentication. An authenticator app is safer than SMS codes.' },
+      { icon: <CheckCircle size={16} />, title: 'Verify money requests with a phone call', description: 'If a friend messages asking for urgent money, call them on their normal number before sending anything. Their account may have been hijacked.' },
+      { icon: <CheckCircle size={16} />, title: 'Warn your contacts if you are hacked', description: 'Use another phone or post a status to tell friends and family not to send money or codes to your account until you recover it.' },
+    ],
+    donts: [
+      'Do not forward any 6-digit code to anyone  -  even a friend, family member, or "WhatsApp support"',
+      'Do not scan WhatsApp Web QR codes for anyone else',
+      'Do not click "vote for my niece in this competition" links  -  these often steal your login',
+      'Do not ignore login alerts from Facebook, Instagram, or Google  -  check them right away',
+    ],
+  },
+  {
+    id: 'fake-jobs',
+    icon: <Briefcase size={22} />,
+    color: 'text-warning',
+    bgColor: 'bg-warning/5',
+    borderColor: 'border-warning/20',
+    title: 'Fake Jobs & Overseas Job Scams',
+    subtitle: 'Job offers that take your money instead of paying you',
+    warning: 'Real employers do not charge you to get hired. If a job asks for a registration, medical, training, or visa "processing" fee before you start, treat it as a scam until proven otherwise.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Check overseas recruitment agencies', description: 'Before paying or travelling for a job abroad (e.g. Gulf countries), confirm the agency is registered with the National Employment Authority (NEA) on its official website.' },
+      { icon: <CheckCircle size={16} />, title: 'Research the company yourself', description: 'Search the company name plus "scam". Find its official website and phone number yourself, and call to confirm the job exists.' },
+      { icon: <CheckCircle size={16} />, title: 'Expect a real interview', description: 'Genuine jobs usually involve an interview and a written offer from an official company email, not just a WhatsApp or Telegram chat.' },
+      { icon: <CheckCircle size={16} />, title: 'Keep your passport and ID safe', description: 'Never hand over your passport to an agent "for safekeeping". Keep copies with a family member you trust.' },
+    ],
+    donts: [
+      'Do not pay any fee to get a job, interview, or "guaranteed placement"',
+      'Do not accept "like and review" or "task" jobs on Telegram that ask you to deposit money to unlock earnings',
+      'Do not trust job offers with very high pay for little work or no experience',
+      'Do not send copies of your ID, KRA PIN, or bank details before confirming the employer is real',
+    ],
+  },
+  {
+    id: 'loan-apps',
+    icon: <Banknote size={22} />,
+    color: 'text-error',
+    bgColor: 'bg-error/5',
+    borderColor: 'border-error/20',
+    title: 'Digital Loan Apps & Loan Scams',
+    subtitle: 'Avoid predatory lenders and fake loan offers',
+    warning: 'Some loan apps shame borrowers by calling their contacts, and some "loans" are scams that ask for a fee and never pay out.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Use only licensed digital lenders', description: 'Check that the lender appears on the Central Bank of Kenya (CBK) list of licensed Digital Credit Providers on the official CBK website.' },
+      { icon: <CheckCircle size={16} />, title: 'Check app permissions before installing', description: 'A loan app does not need access to your contacts, photos, or call logs. If it asks for these, do not install it.' },
+      { icon: <CheckCircle size={16} />, title: 'Read the total cost of the loan', description: 'Look at the full repayment amount, fees, and penalties, not just the interest rate. Short-term loans can become very expensive.' },
+      { icon: <CheckCircle size={16} />, title: 'Report harassment', description: 'If a lender threatens you or contacts your friends and family, keep screenshots and report it to CBK and the Office of the Data Protection Commissioner (ODPC).' },
+    ],
+    donts: [
+      'Do not pay an "activation", "insurance", or "processing" fee to receive a loan  -  real lenders deduct fees from the loan',
+      'Do not install loan apps from links or outside the Play Store / App Store',
+      'Do not take a new loan to repay an old one  -  this quickly becomes a debt trap',
+      'Do not share your M-Pesa PIN or OTP with a "loan officer"',
+    ],
+  },
+  {
+    id: 'online-shopping',
+    icon: <ShoppingBag size={22} />,
+    color: 'text-info',
+    bgColor: 'bg-info/5',
+    borderColor: 'border-info/20',
+    title: 'Online Shopping Scams',
+    subtitle: 'Buying safely on Facebook Marketplace, Instagram, and WhatsApp',
+    warning: 'Fake sellers post very cheap phones, electronics, and clothes, then disappear after you send a deposit.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Pay on delivery when possible', description: 'Inspect the item first, then pay. Meet in a busy, public place during the day if collecting in person.' },
+      { icon: <CheckCircle size={16} />, title: 'Check the till or paybill name', description: 'When paying via Lipa na M-Pesa, confirm the business name shown matches the shop. If it shows a personal name, be careful.' },
+      { icon: <CheckCircle size={16} />, title: 'Look for real reviews', description: 'Check how long the page has existed, read comments, and ask friends if they have bought from the seller before.' },
+      { icon: <CheckCircle size={16} />, title: 'Keep evidence', description: 'Screenshot the advert, chat, and payment message. These help when reporting to Safaricom or the police.' },
+    ],
+    donts: [
+      'Do not send a deposit to "reserve" an item to a stranger',
+      'Do not trust prices that are far below the market price',
+      'Do not move the conversation off the platform just because the seller asks',
+      'Do not send money for "delivery fees" to a different number than the seller',
+    ],
+  },
+  {
+    id: 'passwords-2fa',
+    icon: <KeyRound size={22} />,
+    color: 'text-success',
+    bgColor: 'bg-success/5',
+    borderColor: 'border-success/20',
+    title: 'Strong Passwords & Two-Factor Authentication',
+    subtitle: 'The two simplest ways to protect all your accounts',
+    warning: 'If you use the same password everywhere, one leak from any website lets criminals into your email, social media, and more.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Use a passphrase', description: 'Combine 3-4 random words, e.g. "Mango-Bicycle-Rain-42". Long passphrases are easier to remember and harder to guess than short complex passwords.' },
+      { icon: <CheckCircle size={16} />, title: 'Use a different password for every important account', description: 'Your email password especially must be unique  -  whoever controls your email can reset all your other accounts.' },
+      { icon: <CheckCircle size={16} />, title: 'Use a password manager', description: 'Google Password Manager (built into Android and Chrome) or apps like Bitwarden can remember strong passwords for you.' },
+      { icon: <CheckCircle size={16} />, title: 'Turn on two-factor authentication (2FA)', description: 'In your account security settings, enable 2-step verification. Then a stolen password alone is not enough to log in. Save the backup codes somewhere safe.' },
+    ],
+    donts: [
+      'Do not use your name, birthday, phone number, or "password123"',
+      'Do not share your password with friends or partners',
+      'Do not write passwords on paper stuck to your computer or phone case',
+      'Do not approve a login prompt or 2FA request that you did not start',
+    ],
+  },
+  {
+    id: 'fake-apps',
+    icon: <Download size={22} />,
+    color: 'text-warning',
+    bgColor: 'bg-warning/5',
+    borderColor: 'border-warning/20',
+    title: 'Fake Apps & Malicious Files (APKs)',
+    subtitle: 'Apps that steal your data, codes, and money',
+    warning: 'Files like "Wedding_Invitation.apk" or "M-Pesa_Reversal.apk" sent on WhatsApp are apps, not documents. Installing them can let criminals read your SMS codes and control your phone.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Install apps only from official stores', description: 'Use the Google Play Store or Apple App Store. Check the developer name and number of downloads before installing.' },
+      { icon: <CheckCircle size={16} />, title: 'Keep "Install unknown apps" turned off', description: 'On Android, go to Settings > Apps > Special app access > Install unknown apps and make sure it is off for WhatsApp, Chrome, and file managers.' },
+      { icon: <CheckCircle size={16} />, title: 'Keep Google Play Protect on', description: 'Open Play Store > your profile > Play Protect and make sure scanning is turned on.' },
+      { icon: <CheckCircle size={16} />, title: 'Update your phone and apps', description: 'Install system and app updates when they appear. Updates fix security holes that attackers use.' },
+    ],
+    donts: [
+      'Do not open files ending in .apk sent via WhatsApp, SMS, or email',
+      'Do not give an app "Accessibility" or "SMS" permission unless you are sure why it needs it',
+      'Do not download "modded" or free versions of paid apps from websites',
+      'Do not install apps a caller tells you to install to "fix" your account',
+    ],
+  },
+  {
+    id: 'id-data',
+    icon: <Fingerprint size={22} />,
+    color: 'text-info',
+    bgColor: 'bg-info/5',
+    borderColor: 'border-info/20',
+    title: 'Protecting Your ID & Personal Data',
+    subtitle: 'Your ID number is a key to your money and identity',
+    warning: 'With your ID number and photos, criminals can register SIM cards, take loans, or open accounts in your name.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Mark every ID photocopy', description: 'Write across the copy what it is for and the date, e.g. "For ABC Ltd job application only, 01/10/2026". This makes it harder to reuse.' },
+      { icon: <CheckCircle size={16} />, title: 'Check SIM cards registered to your ID', description: 'Use your mobile network\'s official service to see which numbers are registered with your ID, and report any you do not recognise.' },
+      { icon: <CheckCircle size={16} />, title: 'Know your data rights', description: 'Under the Kenya Data Protection Act, you can ask organisations what data they hold on you and complain to the Office of the Data Protection Commissioner (ODPC) if it is misused.' },
+      { icon: <CheckCircle size={16} />, title: 'Report a lost ID quickly', description: 'Get a police abstract and apply for a replacement. Inform your bank and mobile network so they can watch for fraud.' },
+    ],
+    donts: [
+      'Do not post photos of your ID, passport, KRA PIN certificate, or bank cards online',
+      'Do not give your ID number to people on the street offering "free" gifts or registrations',
+      'Do not leave ID copies at cyber cafes or print shops',
+      'Do not share your date of birth and ID number together on social media forms',
+    ],
+  },
+  {
+    id: 'harassment',
+    icon: <HeartCrack size={22} />,
+    color: 'text-error',
+    bgColor: 'bg-error/5',
+    borderColor: 'border-error/20',
+    title: 'Online Harassment, Sextortion & Romance Scams',
+    subtitle: 'Protecting yourself and your children from abuse online',
+    warning: 'If someone threatens to share private photos unless you pay, you are the victim  -  not the one in trouble. Paying rarely stops the threats.',
+    dos: [
+      { icon: <CheckCircle size={16} />, title: 'Save the evidence, then block', description: 'Screenshot messages, profiles, and payment requests. Then block and report the account on the platform.' },
+      { icon: <CheckCircle size={16} />, title: 'Talk to someone you trust', description: 'Tell a friend, family member, or counsellor. You do not have to deal with this alone. Report threats to the police or DCI.' },
+      { icon: <CheckCircle size={16} />, title: 'Be careful with online-only relationships', description: 'If someone you have never met in person asks for money, crypto investment, or private photos, it is very likely a scam.' },
+      { icon: <CheckCircle size={16} />, title: 'Protect children online', description: 'Talk openly with children about who they chat with, use parental controls, and teach them to tell you if anyone asks for photos or secrets.' },
+    ],
+    donts: [
+      'Do not pay blackmailers  -  they usually ask for more',
+      'Do not send money to someone you only know online',
+      'Do not share intimate photos or videos with anyone online',
+      'Do not delete evidence before reporting',
+    ],
+  },
+];
+
+const scamExamples = [
+  {
+    channel: 'SMS',
+    message: 'Ksh 2,500 imetumwa kwa namba yako kimakosa. Tafadhali rudisha kwa 07XX XXX XXX. Mungu akubariki.',
+    signs: ['Real M-Pesa messages come from "MPESA", not a personal number', 'Pressure to send money back quickly', 'Check your balance with *334# first'],
+  },
+  {
+    channel: 'SMS',
+    message: 'CONGRATULATIONS! You have won Ksh 50,000 in the Safaricom promotion. Send Ksh 500 registration fee to claim.',
+    signs: ['You never entered a competition', 'Real prizes never require a fee', 'Sent from an ordinary phone number'],
+  },
+  {
+    channel: 'WhatsApp',
+    message: 'Hi, sorry I sent a 6-digit code to your number by mistake. Can you please forward it to me?',
+    signs: ['That code is your WhatsApp login code', 'Even if it is from a friend, their account may be hacked', 'Never share verification codes'],
+  },
+  {
+    channel: 'Telegram',
+    message: 'Earn Ksh 3,000-8,000 daily working from home! Just like YouTube videos. Deposit Ksh 1,000 to activate your account.',
+    signs: ['Paying to start a job', 'Unrealistic earnings for simple tasks', 'Recruited through a chat app'],
+  },
+];
+
+const quizQuestions = [
+  { question: 'A caller says they are from Safaricom and need the OTP sent to your phone to "secure your account".', isScam: true, explanation: 'Safaricom will never ask for your OTP or PIN. Hang up and call 100 yourself.' },
+  { question: 'You get an M-Pesa message from "MPESA" confirming a payment you just made at a shop, with the correct shop name.', isScam: false, explanation: 'This matches what you did, comes from the official sender, and shows the right business name.' },
+  { question: 'An agency offers you a cleaning job in Dubai and asks for Ksh 15,000 for "visa processing" before an interview.', isScam: true, explanation: 'Upfront fees before any interview are a major warning sign. Verify agencies with the National Employment Authority.' },
+  { question: 'A friend sends a file called "Harusi_Invitation.apk" on WhatsApp.', isScam: true, explanation: 'Invitations are not .apk files. This is likely malware that can read your messages and codes.' },
+  { question: 'Google sends a security alert email about a new login after you just signed in on a new phone.', isScam: false, explanation: 'This matches something you did. Still, check alerts by opening your Google account directly, not through email links.' },
+];
+
+const hackedSteps = [
+  { title: 'Stay calm and act fast', description: 'The sooner you act, the less damage criminals can do.' },
+  { title: 'Secure your email first', description: 'Change your email password from a safe device. Your email is the key to resetting everything else.' },
+  { title: 'Change passwords and log out all sessions', description: 'Change passwords for affected accounts and use "Log out of all devices" in each account\'s security settings.' },
+  { title: 'Turn on two-factor authentication', description: 'Enable 2FA on every account you recover so the attacker cannot get back in.' },
+  { title: 'Call your mobile network and bank', description: 'If money or your SIM is involved, call Safaricom (100), Airtel, or your bank to freeze or block transactions.' },
+  { title: 'Warn your contacts', description: 'Tell friends and family not to send money or codes to your accounts until you confirm they are safe.' },
+  { title: 'Report it', description: 'Report to the platform, your provider, and the police or DCI. Keep screenshots and transaction messages as evidence.' },
 ];
 
 export const CyberAwareness: React.FC = () => {
   const [openSection, setOpenSection] = useState<string | null>('phone-theft');
   const [copied, setCopied] = useState(false);
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, boolean>>({});
+
+  const quizScore = quizQuestions.filter((q, i) => quizAnswers[i] === q.isScam).length;
+  const quizDone = Object.keys(quizAnswers).length === quizQuestions.length;
 
   const copyPage = async () => {
     try {
@@ -240,6 +464,116 @@ export const CyberAwareness: React.FC = () => {
             </div>
           );
         })}
+      </div>
+
+      {/* Real scam examples */}
+      <div className="card bg-base-200 border border-base-300 mb-8">
+        <div className="card-body p-5">
+          <h2 className="text-base font-semibold text-base-content flex items-center gap-2">
+            <MessageSquareWarning size={16} className="text-warning" /> Real scam messages to watch for
+          </h2>
+          <p className="text-xs text-base-content/50 mb-3">
+            These are examples of the kind of messages scammers send. Learn the warning signs.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {scamExamples.map((example, i) => (
+              <div key={i} className="p-3 rounded-lg bg-base-300 space-y-2">
+                <span className="badge badge-sm badge-warning badge-outline">{example.channel}</span>
+                <p className="text-xs font-mono text-base-content/80 leading-relaxed p-2 rounded bg-base-100 border-l-2 border-warning">
+                  {example.message}
+                </p>
+                <ul className="space-y-1">
+                  {example.signs.map(sign => (
+                    <li key={sign} className="flex items-start gap-1.5 text-xs text-base-content/60">
+                      <AlertTriangle size={12} className="text-error shrink-0 mt-0.5" /> {sign}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Spot the scam quiz */}
+      <div className="card bg-base-200 border border-base-300 mb-8">
+        <div className="card-body p-5">
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <h2 className="text-base font-semibold text-base-content flex items-center gap-2">
+                <HelpCircle size={16} className="text-info" /> Spot the scam
+              </h2>
+              <p className="text-xs text-base-content/50 mt-1">Is it a scam or safe? Test yourself.</p>
+            </div>
+            {Object.keys(quizAnswers).length > 0 && (
+              <button type="button" className="btn btn-xs btn-ghost gap-1" onClick={() => setQuizAnswers({})}>
+                <RotateCcw size={12} /> Reset
+              </button>
+            )}
+          </div>
+          <div className="space-y-3">
+            {quizQuestions.map((q, i) => {
+              const answered = i in quizAnswers;
+              const correct = quizAnswers[i] === q.isScam;
+              return (
+                <div key={i} className="p-3 rounded-lg bg-base-300">
+                  <p className="text-sm text-base-content mb-2">{q.question}</p>
+                  {!answered ? (
+                    <div className="flex gap-2">
+                      <button type="button" className="btn btn-xs btn-error btn-outline" onClick={() => setQuizAnswers(a => ({ ...a, [i]: true }))}>
+                        Scam
+                      </button>
+                      <button type="button" className="btn btn-xs btn-success btn-outline" onClick={() => setQuizAnswers(a => ({ ...a, [i]: false }))}>
+                        Safe
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-start gap-2 text-xs" aria-live="polite">
+                      {correct
+                        ? <CheckCircle size={14} className="text-success shrink-0 mt-0.5" />
+                        : <XCircle size={14} className="text-error shrink-0 mt-0.5" />}
+                      <p className="text-base-content/70 leading-relaxed">
+                        <strong className={correct ? 'text-success' : 'text-error'}>
+                          {correct ? 'Correct!' : 'Not quite.'} It is {q.isScam ? 'a scam' : 'safe'}.
+                        </strong>{' '}
+                        {q.explanation}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {quizDone && (
+            <div className="mt-3 p-3 rounded-lg border border-success/20 bg-success/5 text-sm text-base-content flex items-center gap-2">
+              <Lightbulb size={16} className="text-success shrink-0" />
+              You scored {quizScore} / {quizQuestions.length}. Share this page so others can test themselves too.
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Hacked recovery */}
+      <div className="card bg-base-200 border border-error/20 mb-8">
+        <div className="card-body p-5">
+          <h2 className="text-base font-semibold text-base-content flex items-center gap-2">
+            <RotateCcw size={16} className="text-error" /> I've been hacked or scammed  -  what now?
+          </h2>
+          <p className="text-xs text-base-content/50 mb-3">Follow these steps in order.</p>
+          <ol className="space-y-2">
+            {hackedSteps.map((step, i) => (
+              <li key={step.title} className="flex items-start gap-3 p-3 rounded-lg bg-base-300">
+                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-error/15 text-error text-xs font-bold font-mono shrink-0">
+                  {i + 1}
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-base-content">{step.title}</p>
+                  <p className="text-xs text-base-content/60 mt-0.5 leading-relaxed">{step.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
 
       {/* Emergency contacts */}
