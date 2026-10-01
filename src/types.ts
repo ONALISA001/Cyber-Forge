@@ -118,7 +118,7 @@ export type Page =
   | 'community'
   | 'my-story'
   | 'cyber-awareness'
-  | 'secplus-prep';   // NEW: Security+ question bank page
+  | 'secplus-prep'    // NEW: Security+ question bank page
   | 'terminal';
 
 // ── Security+ Question Bank ────────────────────────────────────────────────
