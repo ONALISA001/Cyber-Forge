@@ -2,7 +2,7 @@
 
 A self-paced cybersecurity learning platform built with React, TypeScript, and Vite. CyberForge organizes courses, hands-on labs, certification roadmaps, and career tools into a single dashboard for learners working toward roles like SOC Analyst.
 
-**Live demo:**  https://lively-jalebi-15c251.netlify.app/
+**Live demo:**  https://cyber-forgee.netlify.app/
 
 ## Features
 
